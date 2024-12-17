@@ -1,7 +1,6 @@
 import React, { useTransition } from 'react'
 import { Form, useLoaderData } from '@remix-run/react';
 
-
 const blog = () => {
    const transition = useTransition();
   return (
@@ -22,6 +21,7 @@ const blog = () => {
             </button>
         </Form>
       </div>
+      
     </div>
   )
 }

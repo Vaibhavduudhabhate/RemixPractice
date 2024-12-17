@@ -22,7 +22,7 @@ const about = () => {
             <button className='btn bg-blue-400 p-3 mx-5 mb-5 mt-8 inline-block text-white' type="submit" disabled={transition.state === "submitting"}>
               {transition.state === "submitting" ? "Adding..." : "Add Item"}
             </button>
-          </Form>
+        </Form>
       </div>
     </div>
   )

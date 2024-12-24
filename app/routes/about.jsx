@@ -1,13 +1,29 @@
-import { Form, useLoaderData } from '@remix-run/react';
+import { Form, Link, useLoaderData } from '@remix-run/react';
 import React, { useTransition } from 'react'
 import { FaArrowRight } from "react-icons/fa6";
+import { json } from "@remix-run/node";
+
+export const meta = () => {
+  return [
+    { title: "New Remix App" },
+    { name: "description", content: "Welcome to Remix!" },
+  ];
+};
+export const loader = async () => {
+  const res = await fetch("https://fakestoreapi.com/products");
+  const products = await res.json();
+  // console.log(products); 
+  return json({ products });
+  
+};
 
 const about = () => {
+  const { products } = useLoaderData();
     // const { success, data } = useLoaderData();
   const transition = useTransition();
   
   return (
-    <div className="container mt-5 mx-auto">
+    <div className="container mt-5 mx-auto mb-5">
       <div className="card  border mx-auto">
         <div className="card-body m-5">
           <h5 className="card-title text-[25px]">About us</h5>
@@ -23,6 +39,31 @@ const about = () => {
               {transition.state === "submitting" ? "Adding..." : "Add Item"}
             </button>
         </Form>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="border relative rounded-lg shadow-lg p-4 flex flex-col items-center"
+          >
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-32 h-32 object-contain mb-4"
+            />
+            <h3 className="text-lg font-bold text-center mb-2">{product.title}</h3>
+            <p className="text-sm text-gray-600 text-center mb-2">${product.price}</p>
+            <p className="text-sm text-gray-500 line-clamp-3 text-center">
+              {product.description}
+            </p>
+            <Link
+              to={`/products/${product.id}`}
+              className="absolute bottom-0 bg-blue-500 text-white py-2 px-4 rounded text-center"
+            >
+              View More...
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   )

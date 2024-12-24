@@ -20,7 +20,7 @@ export default function Index() {
   const { products } = useLoaderData();
   return (
     <>
-    <div className="container mt-5 mx-auto">
+    <div className="container mt-5 mx-auto mb-5">
       <div className="card  border mx-auto">
         <div className="card-body m-5 flex justify-between">
           <div>
@@ -48,7 +48,12 @@ export default function Index() {
             <p className="text-sm text-gray-500 line-clamp-3 text-center">
               {product.description}
             </p>
-            <button className="absolute bottom-0">View More...</button>
+            <a
+              href={`/products/${product.id}`}
+              className="absolute bottom-0 bg-blue-500 text-white py-2 px-4 rounded text-center"
+            >
+              View More...
+            </a>
           </div>
         ))}
       </div>

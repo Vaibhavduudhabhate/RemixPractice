@@ -4,7 +4,7 @@ import { Form, useLoaderData } from '@remix-run/react';
 const blog = () => {
    const transition = useTransition();
   return (
-    <div className="container mt-5 mx-auto">
+    <div className="container mt-5 mx-auto mb-5">
       <div className="card  border mx-auto">
         <div className="card-body m-5">
           <h5 className="card-title text-[25px]">Blog page</h5>

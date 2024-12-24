@@ -9,9 +9,9 @@ export const meta = () => {
   ];
 };
 export const loader = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
+  const res = await fetch("https://fakestoreapi.in/api/products");
   const products = await res.json();
-  console.log(products);
+  console.log(products.products);
   return json({ products });
   
 };
@@ -33,7 +33,7 @@ export default function Index() {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-        {products.map((product) => (
+        {products.products.map((product) => (
           <div
             key={product.id}
             className="border relative rounded-lg shadow-lg p-4 flex flex-col items-center"
